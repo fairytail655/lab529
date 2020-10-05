@@ -24,4 +24,5 @@ main: $(addsuffix .o, $(bin_obj))
 clean:
 	make -C $(KERN_DIR) M=`pwd` modules clean
 	$(RM) -rf modules.order
-	$(RM) -rf $(addprefix $(BIN_DIR), $(bin_obj))
+	$(RM) -rf *.o
+	# $(RM) -rf $(addprefix $(BIN_DIR), $(bin_obj))
