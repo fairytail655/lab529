@@ -1,0 +1,271 @@
+
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+2020-09-24 08:12:00 : Morning!Checking card...
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+2020-09-24 08:12:00 : Morning!Checking card...
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+2020-09-24 08:12:00 : Morning!Checking card...
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+status:T
+2020-09-24 08:12:00 : Morning!Checking card...
+ButtonControl: wiringPiSetup finish
+ButtonControl: gpioInit finish
+Checked card!
+RPiTVPowerOn: wiringPiSetup finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: send PowerONCommand: finish
+RPiTVPowerOn: setFileFlag O
