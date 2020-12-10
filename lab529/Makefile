@@ -10,6 +10,6 @@ lab529_test: main.o http.o
 
 PHONY += clean
 clean:
-	$(RM) -rf *.o
+	$(RM) -rf *.o lab529_test
 
 .PHONY: PHONY

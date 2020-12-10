@@ -69,7 +69,7 @@ static void write_time_to_file(void)
     time(&timep);
     p = localtime(&timep);
     str = (char *)calloc(RECORD_BUFFER_SIZE, 1);
-    sprintf(str, "%d-%d-%d %02d:%02d:%02d", (1900+p->tm_year), (1 + p->tm_mon), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
+    sprintf(str, "%d-%02d-%02d %02d:%02d:%02d", (1900+p->tm_year), (1 + p->tm_mon), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
     // printf("%s\n", record_buffer);
     fputs(str, recorder_fd);
     // fwrite(record_buffer, 1, strlen(record_buffer)+1, recorder_fd);
