@@ -4,11 +4,11 @@
  # @Author: Fox_benjiaming
  # @Date: 2020-10-06 01:19:27
  # @LastEditors: Fox_benjiaming
- # @LastEditTime: 2020-12-08 23:52:42
+ # @LastEditTime: 2020-12-09 16:27:31
 ### 
 #!/bin/bash
 
-ip=169.254.20.80
+ip=192.168.1.115
 bin_dir=/root/bin
 drv_dir=/root/driver
 bin=0
