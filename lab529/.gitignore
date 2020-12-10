@@ -1,3 +1,4 @@
-!*.c
-!*.h
+!http.c
+!http.h
+!main.c
 !Makefile
