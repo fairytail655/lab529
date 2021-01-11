@@ -122,7 +122,7 @@ static void printer_thread(void)
         // 获取当前时刻
         gettimeofday(&current_time, NULL);
         time_sec = current_time.tv_sec - printer_start_time.tv_sec;
-        printf("time_sec:%d\n", time_sec);
+        // printf("time_sec:%d\n", time_sec);
         if (time_sec > printer_on_time*60)
         {
             printer_on_time = 0;
@@ -180,7 +180,7 @@ static void url_get_thread(void)
                         // 跳过创建打印机开启线程
                         goto end;
                     }
-                    printer_on_time = time_num;
+                    printer_on_time += time_num;
                     // 查看线程是否已存在
                     ret = pthread_kill(printer_thread_id, 0);
                     // 如果线程不存在
