@@ -172,20 +172,17 @@ static void url_get_thread(void)
                 time_num = atoi((const char *)time_str);
                 if (time_num > 0)
                 {
-                    // 更新全局变量: 打印机开启时刻, 打印机启动时长
-                    ret = gettimeofday(&printer_start_time, NULL);
-                    if (ret != 0)
+                    if (printer_on_time == 0)
                     {
-                        printf("[Url get thread] get printer start time error!\n");
-                        // 跳过创建打印机开启线程
-                        goto end;
-                    }
-                    printer_on_time += time_num;
-                    // 查看线程是否已存在
-                    ret = pthread_kill(printer_thread_id, 0);
-                    // 如果线程不存在
-                    if (ret != 0)
-                    {
+                        printer_on_time = time_num;
+                        // 更新全局变量: 打印机开启时刻, 打印机启动时长
+                        ret = gettimeofday(&printer_start_time, NULL);
+                        if (ret != 0)
+                        {
+                            printf("[Url get thread] get printer start time error!\n");
+                            // 跳过创建打印机开启线程
+                            goto end;
+                        }
                         ret = pthread_create(&printer_thread_id, NULL, (void *)printer_thread, NULL);
                         if (ret != 0)
                         {
@@ -193,6 +190,24 @@ static void url_get_thread(void)
                             // return;
                         }
                     }
+                    else
+                    {
+                        printer_on_time += time_num;
+                        printf("[Printer thread] add time %d s.\n", time_num);
+                    }
+                    printf("[Printer thread] current printer_on_time: %d\n", printer_on_time);
+                    // // 查看线程是否已存在
+                    // ret = pthread_kill(printer_thread_id, 0);
+                    // // 如果线程不存在
+                    // if (ret != 0)
+                    // {
+                    //     ret = pthread_create(&printer_thread_id, NULL, (void *)printer_thread, NULL);
+                    //     if (ret != 0)
+                    //     {
+                    //         printf("[Printer thread] create error!\n");
+                    //         // return;
+                    //     }
+                    // }
                 }
                 // printf("%d\n", time_num);
             }
