@@ -8,7 +8,7 @@
 ### 
 #!/bin/bash
 
-ip=192.168.1.108
+ip=192.168.1.104
 bin_dir=/root/bin
 drv_dir=/root/driver
 bin=0

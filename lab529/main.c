@@ -14,6 +14,8 @@
 #define HTTP_BUFFER_SIZE 1024
 // card record 大小
 #define RECORD_BUFFER_SIZE 50
+// http timeout s
+#define HTTP_TIME_OUT   5
 
 // 日志文件
 const char *log_file = "/var/log/lab529.log";
@@ -22,6 +24,8 @@ FILE *log_fd;
 // 刷卡机设备
 const char *card_uart_dev = "/dev/card_uart";
 int card_uart_fd;
+// flag
+static char card_checked_flag = 0;
 // 刷卡机读取前需要发送的请求数据
 const unsigned char card_write_data[7] = {0x03, 0xff, 0x07, 0x04, 0x01, 0x00, 0xfe};
 // 刷卡机串口数据缓冲区
@@ -33,6 +37,7 @@ const char *card_request_end = "&pas=123456&info=devID";
 const char *card_response = "Info:OK!";
 // 刷卡记录文件
 const char *card_recorder = "/root/card_recorder.txt";
+char card_thread_flag = 0;
 
 // 打印机设备
 const char *printer_dev = "/dev/printer";
@@ -148,15 +153,23 @@ static void url_get_thread(void)
 
     printf("[Url get] thread start!\n");
 
+    card_thread_flag = 1;
+
     // 发送包含卡号的 url 给服务器
-    http_buffer = http_get(card_request_data);
+    http_buffer = http_get(card_request_data, HTTP_TIME_OUT);
     // 如果发送成功且返回数据中包含指定字符串
     if ((http_buffer != NULL) && strstr((const char *)http_buffer, card_response))
     {
+        // 延时 200ms
+        usleep(200000);
+        // beep on 1s
+        beep_control(1);
+        usleep(1000000);
+        beep_control(0);
         // 释放 malloc 申请的返回数据内存, 详情见 http.c
         free(http_buffer);
         // 发送获取打印机启动时长的 url
-        http_buffer = http_get(printer_request);
+        http_buffer = http_get(printer_request, HTTP_TIME_OUT);
         // 如果发送成功
         if (http_buffer != NULL)
         {
@@ -223,8 +236,15 @@ static void url_get_thread(void)
     }
     else
     {
+        // 延时 200ms
+        usleep(200000);
+        // beep on 2s
+        beep_control(1);
+        usleep(2000000);
+        beep_control(0);
         printf("[Http] card send error!\n");
     }
+    card_thread_flag = 0;
     // 熄灭 led1
     leds_control(1, 0);
     printf("[Url get] thread exit!\n");
@@ -259,22 +279,28 @@ static void card_read_thread(void)
     {
         // 读取到正确格式的数据后从休眠中唤醒
         read(card_uart_fd, card_read_buffer, READ_BUFFER_SIZE);
+
+        printf("[Card Read] checked card!\n");
+
+        card_checked_flag = 1;
         // 开启 led1 和 beep
         leds_control(1, 1);
+        // beep on 200 ms
         beep_control(1);
-
-        // 查看线程是否存在
-        ret = pthread_kill(beep_off_id, 0);
-        // 如果线程不存在, 创建线程
-        if (ret != 0)
-        {
-            ret = pthread_create(&beep_off_id, NULL, (void *)beep_off_thread, NULL);
-            if (ret != 0)
-            {
-                printf("[Beep off thread] create error!\n");
-                return;
-            }
-        }
+        usleep(200000);
+        beep_control(0);
+        // // 查看线程是否存在
+        // ret = pthread_kill(beep_off_id, 0);
+        // // 如果线程不存在, 创建线程
+        // if (ret != 0)
+        // {
+        //     ret = pthread_create(&beep_off_id, NULL, (void *)beep_off_thread, NULL);
+        //     if (ret != 0)
+        //     {
+        //         printf("[Beep off thread] create error!\n");
+        //         return;
+        //     }
+        // }
 
         write_time_to_file();
 
@@ -288,18 +314,29 @@ static void card_read_thread(void)
         }
         strcat(card_request_data, card_request_end); 
 
-        // 查看线程是否存在
-        ret = pthread_kill(url_get_id, 0);
-        // 线程不存在
-        if (ret != 0)
-        {
-            ret = pthread_create(&url_get_id, NULL, (void *)url_get_thread, NULL);
-            if (ret != 0)
-            {
-                printf("[Url get thread] create error!\n");
-                return;
-            }
-        }
+        // // 查看线程是否存在
+        // ret = pthread_kill(url_get_id, 0);
+        // // 线程不存在
+        // if (ret != 0)
+        // {
+        //     ret = pthread_create(&url_get_id, NULL, (void *)url_get_thread, NULL);
+        //     if (ret != 0)
+        //     {
+        //         printf("[Url get thread] create error!\n");
+        //         return;
+        //     }
+        // }
+
+        // if (card_thread_flag == 0)
+        // {
+        //     ret = pthread_create(&url_get_id, NULL, (void *)url_get_thread, NULL);
+        //     if (ret != 0)
+        //     {
+        //         printf("[Url get thread] create error!\n");
+        //         return;
+        //     }
+        // }
+        url_get_thread();
 
         // // 查看线程是否存在
         // ret = pthread_kill(net_check_id, 0);
@@ -313,6 +350,10 @@ static void card_read_thread(void)
         //         return;
         //     }
         // }
+
+        usleep(1000000);
+
+        card_checked_flag = 0;
     }
 }
 
@@ -397,8 +438,11 @@ int main(int argc, char *argv[])
     {
         // 延时 500ms
         usleep(500000);
-        // 向刷卡机发送读取请求指令
-        write(card_uart_fd, card_write_data, 7);
+        if (card_checked_flag == 0)
+        {
+            // 向刷卡机发送读取请求指令
+            write(card_uart_fd, card_write_data, 7);
+        }
         // 改变 led2 状态, on->off, off->on
         leds_control(2, led2_status);
         led2_status = (led2_status == 1) ? 0 : 1;

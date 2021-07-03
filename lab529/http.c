@@ -3,6 +3,8 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <string.h>
+#include <sys/time.h>
+#include <errno.h>
  
 #include "http.h"
  
@@ -12,10 +14,12 @@
 #define HTTP_GET "GET /%s HTTP/1.1\r\nHOST: %s:%d\r\nAccept: */*\r\n\r\n"
  
  
-static int http_tcpclient_create(const char *host, int port){
+static int http_tcpclient_create(const char *host, int port, int timeout){
     struct hostent *he;
     struct sockaddr_in server_addr; 
     int socket_fd;
+    struct timeval time_out = {timeout, 0};
+    socklen_t len = sizeof(time_out);
  
     if((he = gethostbyname(host))==NULL){
         return -1;
@@ -28,9 +32,15 @@ static int http_tcpclient_create(const char *host, int port){
     if((socket_fd = socket(AF_INET,SOCK_STREAM,0))==-1){
         return -1;
     }
+
+    setsockopt(socket_fd, SOL_SOCKET, SO_SNDTIMEO, &time_out, len);
  
     if(connect(socket_fd, (struct sockaddr *)&server_addr,sizeof(struct sockaddr)) == -1){
-        return -1;
+        if (errno == EINPROGRESS)
+        {
+            printf("socket timeout!");
+            return -1;
+        }
     }
  
     return socket_fd;
@@ -131,7 +141,7 @@ static char *http_parse_result(const char*lpbuf)
     return response;
 }
  
-char * http_post(const char *url,const char *post_str){
+char * http_post(const char *url,const char *post_str, int timeout){
  
     char post[BUFFER_SIZE] = {'\0'};
     int socket_fd = -1;
@@ -154,7 +164,7 @@ char * http_post(const char *url,const char *post_str){
     }
     //printf("host_addr : %s\tfile:%s\t,%d\n",host_addr,file,port);
  
-    socket_fd = http_tcpclient_create(host_addr,port);
+    socket_fd = http_tcpclient_create(host_addr,port, timeout);
     if(socket_fd < 0){
         printf("http_tcpclient_create failed\n");
         return NULL;
@@ -179,7 +189,7 @@ char * http_post(const char *url,const char *post_str){
     return http_parse_result(lpbuf);
 }
  
-char * http_get(const char *url)
+char * http_get(const char *url, int timeout)
 {
  
     char post[BUFFER_SIZE] = {'\0'};
@@ -202,7 +212,7 @@ char * http_get(const char *url)
     }
     //printf("host_addr : %s\tfile:%s\t,%d\n",host_addr,file,port);
  
-    socket_fd =  http_tcpclient_create(host_addr,port);
+    socket_fd =  http_tcpclient_create(host_addr,port, timeout);
     if(socket_fd < 0){
         printf("http_tcpclient_create failed\n");
         return NULL;
