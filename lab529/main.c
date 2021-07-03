@@ -102,6 +102,21 @@ static inline void beep_control(unsigned char status)
     write(beep_fd, &status, 1);
 }
 
+static void beep_action(char count)
+{
+    char i = 0;
+
+    for (; i < count; i++)
+    {
+        beep_control(1);
+        usleep(200000);
+        beep_control(0);
+        usleep(200000);
+    }
+    usleep(1800000);
+}
+
+
 // 控制 printer 的开关
 // status: 状态, 1-开启, 0-关闭
 static inline void printer_control(unsigned char status)
@@ -160,12 +175,7 @@ static void url_get_thread(void)
     // 如果发送成功且返回数据中包含指定字符串
     if ((http_buffer != NULL) && strstr((const char *)http_buffer, card_response))
     {
-        // 延时 200ms
-        usleep(200000);
-        // beep on 1s
-        beep_control(1);
-        usleep(1000000);
-        beep_control(0);
+        beep_action(2);
         // 释放 malloc 申请的返回数据内存, 详情见 http.c
         free(http_buffer);
         // 发送获取打印机启动时长的 url
@@ -209,18 +219,6 @@ static void url_get_thread(void)
                         printf("[Printer thread] add time %d s.\n", time_num);
                     }
                     printf("[Printer thread] current printer_on_time: %d\n", printer_on_time);
-                    // // 查看线程是否已存在
-                    // ret = pthread_kill(printer_thread_id, 0);
-                    // // 如果线程不存在
-                    // if (ret != 0)
-                    // {
-                    //     ret = pthread_create(&printer_thread_id, NULL, (void *)printer_thread, NULL);
-                    //     if (ret != 0)
-                    //     {
-                    //         printf("[Printer thread] create error!\n");
-                    //         // return;
-                    //     }
-                    // }
                 }
                 // printf("%d\n", time_num);
             }
@@ -236,33 +234,13 @@ static void url_get_thread(void)
     }
     else
     {
-        // 延时 200ms
-        usleep(200000);
-        // beep on 2s
-        beep_control(1);
-        usleep(2000000);
-        beep_control(0);
+        beep_action(3);
         printf("[Http] card send error!\n");
     }
     card_thread_flag = 0;
     // 熄灭 led1
     leds_control(1, 0);
     printf("[Url get] thread exit!\n");
-}
-
-// // 网络超时检测线程
-// static void net_check_thread(void)
-// {
-
-// }
-
-// 关闭 beep 的线程
-static void beep_off_thread(void)
-{
-    // 延时 300ms
-    usleep(300000);
-    // 关闭 beep
-    beep_control(0);
 }
 
 // 刷卡机数据读取线程
@@ -285,22 +263,7 @@ static void card_read_thread(void)
         card_checked_flag = 1;
         // 开启 led1 和 beep
         leds_control(1, 1);
-        // beep on 200 ms
-        beep_control(1);
-        usleep(200000);
-        beep_control(0);
-        // // 查看线程是否存在
-        // ret = pthread_kill(beep_off_id, 0);
-        // // 如果线程不存在, 创建线程
-        // if (ret != 0)
-        // {
-        //     ret = pthread_create(&beep_off_id, NULL, (void *)beep_off_thread, NULL);
-        //     if (ret != 0)
-        //     {
-        //         printf("[Beep off thread] create error!\n");
-        //         return;
-        //     }
-        // }
+        beep_action(1);
 
         write_time_to_file();
 
@@ -314,44 +277,7 @@ static void card_read_thread(void)
         }
         strcat(card_request_data, card_request_end); 
 
-        // // 查看线程是否存在
-        // ret = pthread_kill(url_get_id, 0);
-        // // 线程不存在
-        // if (ret != 0)
-        // {
-        //     ret = pthread_create(&url_get_id, NULL, (void *)url_get_thread, NULL);
-        //     if (ret != 0)
-        //     {
-        //         printf("[Url get thread] create error!\n");
-        //         return;
-        //     }
-        // }
-
-        // if (card_thread_flag == 0)
-        // {
-        //     ret = pthread_create(&url_get_id, NULL, (void *)url_get_thread, NULL);
-        //     if (ret != 0)
-        //     {
-        //         printf("[Url get thread] create error!\n");
-        //         return;
-        //     }
-        // }
         url_get_thread();
-
-        // // 查看线程是否存在
-        // ret = pthread_kill(net_check_id, 0);
-        // // 线程不存在
-        // if (ret != 0)
-        // {
-        //     ret = pthread_create(&net_check_id, NULL, (void *)net_check_thread, NULL);
-        //     if (ret != 0)
-        //     {
-        //         printf("[Net check thread] create error!\n");
-        //         return;
-        //     }
-        // }
-
-        usleep(1000000);
 
         card_checked_flag = 0;
     }
